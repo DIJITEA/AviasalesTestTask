@@ -1,0 +1,53 @@
+$fontVar: 2em "Fira Sans",
+sans-serif;
+
+* {
+    margin: 0;
+}
+
+.yearRender {
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+    }
+}
+
+.year {
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 70px;
+    }
+
+    &__header {
+        font: $fontVar
+    }
+}
+
+.months {
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__button {
+        display: flex;
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
+
+    &__button:hover {
+        color: red;
+    }
+
+    &__header {
+        vertical-align: top;
+        font: $fontVar;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+    }
+}

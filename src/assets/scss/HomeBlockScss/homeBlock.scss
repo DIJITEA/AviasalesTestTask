@@ -1,0 +1,46 @@
+.home-block {
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 128px;
+        margin-bottom: 50px;
+    }
+
+    &__header {
+        font-family: 'Gilroy-Bold';
+        font-size: 47.3392px;
+        line-height: 59px;
+    }
+
+    &__paragraph {
+        font-family: 'Gilroy-Medium';
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    &__form {
+        transform: rotate(-90deg) translateY(+100%) translateX(50%)
+    }
+
+    &__form-label {
+        font-family: Gilroy-Bold;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    &__form-label--unchecked {
+        color: #828282;
+    }
+
+    &__form-delimiter {
+        font-family: Gilroy-Bold;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    &__form-input {
+        display: none;
+    }
+}
