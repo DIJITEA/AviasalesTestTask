@@ -3,7 +3,20 @@ import { useAppSelector, useAppDispatch } from '../../hooks'
 import { GetTikets } from '../../store/actions/TiketsAction';
 import TiketsAmount, { TiketsUpdate } from '../../store/actions/TiketsAmount';
 import { TiketsState } from '../../store/actions/TiketsAction';
+import { fromWhereUpdate } from '../../store/actions/TicketSettingsAction';
 
+function fromUpdate(store: TiketsState, from: string) {
+    let inf = store.value.slice()
+    let result = []
+    for (let i = 0; i < inf.length; i++) {
+        if (inf[i].info.origin === from.toUpperCase())
+            result.push(inf[i])
+    }
+    if (result.length > 0)
+        return result
+    else
+    return inf
+}
 function byPrice(a: any, b: any) {
     console.log(typeof a)
     return a.price - b.price
@@ -11,12 +24,18 @@ function byPrice(a: any, b: any) {
 
 function Tiket(Component: { dataId: number }) {
     const status = useAppSelector(state => state.TiketsState.status)
-    const tickets = useAppSelector(state => state.TiketsState.value)
+    const tickets = useAppSelector(state => state.TiketsState)
+    const inputFromWhere = useAppSelector(state => state.TiketsSettings.fromWhere)
 
     if (status === 'loading') return (<div><h1>{status}</h1></div>)
     else if (status === 'failed') return (<div><h1>{status}</h1></div>)
     else if (status === 'succes') {
-        let temptickets = tickets.slice()
+        let temptickets = tickets.value.slice()
+        // const inputFromWhere = useAppSelector(state => state.TiketsSettings.fromWhere)
+        if (inputFromWhere.length === 3) {
+            temptickets = fromUpdate(tickets, inputFromWhere)
+        }
+
         // temptickets.sort(byPrice)
         const ticketInfo = temptickets[Component.dataId]
         const dateStart = new Date(ticketInfo.info.dateStart)
@@ -27,8 +46,10 @@ function Tiket(Component: { dataId: number }) {
             if (ticketInfo.info.stops.length == 0) {
                 return (<div><p>БЕЗ ПЕРЕСАДОК</p></div>)
             } else {
+                let transplantsCountString = 'ПЕРЕСАДКИ'
+                if (ticketInfo.info.stops.length === 1) transplantsCountString = 'ПЕРЕСАДКА'
                 return (<div>
-                    <p>{ticketInfo.info.stops.length} ПЕРЕСАДКИ</p>
+                    <p>{ticketInfo.info.stops.length} {transplantsCountString}</p>
                     <h4>{ticketInfo.info.stops.join(', ')}</h4>
                 </div>)
             }
