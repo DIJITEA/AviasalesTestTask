@@ -33,8 +33,9 @@ export const TiketsSettingsLogic = createSlice({
             state.fromWhere = state.toWhere
             state.toWhere = temp
         },
-        whenUpdate: (state, action: PayloadAction<Date>) => {
-            state.when = action.payload;
+        whenUpdate: (state, action: PayloadAction<string>) => {
+            console.log(action.payload)
+            state.when = new Date(action.payload);
         },
         whenBackUpdate: (state, action: PayloadAction<Date>) => {
             state.when = action.payload;

@@ -1,0 +1,61 @@
+.companies-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    // align-items: lef;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    width: 232px;
+    height: 177px;
+
+    &__header {
+        width: 232px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 12px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin: 20px;
+    }
+}
+
+.company-cell {
+    // display: flex;
+    &__input{
+        position: absolute;
+        opacity: 0;
+    }
+    &__label{
+        display: flex;
+        padding-left: 20px;
+        align-items: center;
+        // height: 100%;
+        width: 232px;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    &__label:hover {
+        background-color: #F1FCFF;
+        cursor: pointer;
+    }
+
+    &__label::before {
+        content: url('../../svg/radioborder.svg');
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        // border: 1px solid #2196F3;
+        border-radius: 50px;
+    }
+    &__input:checked+&__label::before {
+        display: flex;
+        justify-content: space-around;
+        // align-items: center;
+        content: url('../../svg/dot.svg');
+        background-color: #FFFFFF;
+    }
+}

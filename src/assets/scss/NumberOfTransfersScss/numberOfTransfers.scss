@@ -1,0 +1,67 @@
+.transfers-form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #FFFFFF;
+    width: 232px;
+    height: 227px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+    &__header {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 12px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin: 20px;
+    }
+
+    &__input-container {
+        height: 40px;
+        width: 100%;
+
+
+    }
+
+    &__label {
+        display: flex;
+        justify-content: left;
+        padding-left: 20px;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    &__label:hover {
+        background-color: #F1FCFF;
+        cursor: pointer;
+    }
+
+    &__label::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border: 1px solid #2196F3;
+    }
+
+    &__checkbox {
+        position: absolute;
+        opacity: 0;
+    }
+
+    &__checkbox:checked+.transfers-form__label::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        content: url('../../svg/ok.svg');
+        background-color: #FFFFFF;
+    }
+
+}
