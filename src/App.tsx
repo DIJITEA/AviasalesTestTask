@@ -1,4 +1,3 @@
-import './assets/fonts/fonts.scss'
 import './assets/scss/MainScss/mainStyles.scss'
 import './assets/scss/MainScss/styleReset.scss'
 import Header from "./components/HeaderBlock/Header";
@@ -13,11 +12,17 @@ export default function App() {
     <div className='content-container'>
       <Header />
       <Input />
-      <hr />
-      <NumberOfTransfers />
-      <CompaniesSwitcher />
-      <Sort />
-      <Tikets />
+      <hr className='content-container__hr'/>
+      <div className='content-container__lower-level'>
+        <div>
+          <NumberOfTransfers />
+          <CompaniesSwitcher />
+        </div>
+        <div>
+          <Sort />
+          <Tikets />
+        </div>
+      </div>
     </div>
   </div>
 }

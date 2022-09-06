@@ -1,0 +1,78 @@
+$blueVar: #2196F3;
+$namesColor: #A0B0B9;
+
+.tiket-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    padding: 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    max-width: 502px;
+    height: 135px;
+}
+
+.tiket-upper-level {
+    display: flex;
+    justify-content: space-between;
+    width: 502px;
+
+    &__price {
+        color: $blueVar;
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    &__company {}
+}
+
+.tiket-lower-level {
+    display: flex;
+    justify-content: space-between;
+    width: 502px;
+}
+
+.tiket-lower-level-cell {
+    display: flex;
+    max-width: 140px;
+    width: 140px;
+    flex-wrap: wrap;
+
+    &__names {
+        width: 100%;
+        color: $namesColor;
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    &__content {
+        width: 100%;
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+    }
+}
+.add-tickets-button{
+    cursor: pointer;
+    width: 502px;
+    height: 50px;
+    color: #FFFFFF;
+    background-color: $blueVar;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+}

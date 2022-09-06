@@ -1,0 +1,33 @@
+$activeColor: #2196F3;
+$hoveredColor: #F1FCFF;
+$borderColor: #DFE5EC;
+
+.sort-block {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    &__button {
+        width: 168px;
+        height: 50px;
+        border: 1px solid $borderColor;
+        background-color: #FFFFFF;
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 20px;
+
+        &--active {
+            background-color: $activeColor;
+            color: #FFFFFF;
+            transition: background-color 0.5s;
+        }
+
+        &:hover:not(&--active) {
+            cursor: pointer;
+            background-color: $hoveredColor;
+        }
+
+    }
+}

@@ -4,4 +4,12 @@
 .content-container{
     margin: 0 auto;
     max-width: 754px;
+    &__hr{
+        margin-bottom: 25px;
+    }
+    &__lower-level{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 }

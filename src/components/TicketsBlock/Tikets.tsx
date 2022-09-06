@@ -1,3 +1,4 @@
+import '../../assets/scss/TiketsBlockScss/tiketsBlock.scss'
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks'
 import { GetTikets } from '../../store/actions/TiketsAction';
@@ -85,30 +86,33 @@ function Tiket(Component: { dataId: number }) {
 
         const stopsLength = () => {
             if (ticketInfo.info.stops.length == 0) {
-                return (<div><p>БЕЗ ПЕРЕСАДОК</p></div>)
+                return (<div className='tiket-lower-level-cell'>
+                    <p className='tiket-lower-level-cell__names'>БЕЗ ПЕРЕСАДОК</p>
+                    <h4></h4>
+                    </div>)
             } else {
                 let transplantsCountString = 'ПЕРЕСАДКИ'
                 if (ticketInfo.info.stops.length === 1) transplantsCountString = 'ПЕРЕСАДКА'
-                return (<div>
-                    <p>{ticketInfo.info.stops.length} {transplantsCountString}</p>
-                    <h4>{ticketInfo.info.stops.join(', ')}</h4>
+                return (<div className='tiket-lower-level-cell'>
+                    <p className='tiket-lower-level-cell__names'>{ticketInfo.info.stops.length} {transplantsCountString}</p>
+                    <h4 className='tiket-lower-level-cell__content'>{ticketInfo.info.stops.join(', ')}</h4>
                 </div>)
             }
         }
 
-        return (<div>
-            <div>
-                <h3>{ticketInfo.price} Р</h3>
-                <p>{ticketInfo.companyId}</p>
+        return (<div className='tiket-block'>
+            <div className='tiket-upper-level'>
+                <h3 className='tiket-upper-level__price'>{ticketInfo.price} Р</h3>
+                <p className='tiket-upper-level__company'>{ticketInfo.companyId}</p>
             </div>
-            <div>
-                <div>
-                    <p>{ticketInfo.info.origin} - {ticketInfo.info.destination}</p>
-                    <h4>{`${dateStart.getHours()}:${dateStart.getMinutes()}`} - {`${dateEnd.getHours()}:${dateEnd.getMinutes()}`}</h4>
+            <div className='tiket-lower-level'>
+                <div className='tiket-lower-level-cell'>
+                    <p className='tiket-lower-level-cell__names'>{ticketInfo.info.origin} - {ticketInfo.info.destination}</p>
+                    <h4 className='tiket-lower-level-cell__content'>{`${dateStart.getHours()}:${dateStart.getMinutes()}`} - {`${dateEnd.getHours()}:${dateEnd.getMinutes()}`}</h4>
                 </div>
-                <div>
-                    <p>в пути</p>
-                    <h4>{`${duration.getHours()}ч ${duration.getMinutes()}м`}</h4>
+                <div className='tiket-lower-level-cell'>
+                    <p className='tiket-lower-level-cell__names'>в пути</p>
+                    <h4 className='tiket-lower-level-cell__content'>{`${duration.getHours()}ч ${duration.getMinutes()}м`}</h4>
                 </div>
                 <div>
                     {stopsLength()}
@@ -127,7 +131,7 @@ function AddTiketsbutton() {
         maxAdd = tiketsmaxAmount - tiketsAmount
     }
     return (
-        <button onClick={() => dispatch(TiketsUpdate())}>ПОКАЗАТЬ ЕЩЕ {maxAdd} БИЛЕТОВ</button>
+        <button className='add-tickets-button' onClick={() => dispatch(TiketsUpdate())}>ПОКАЗАТЬ ЕЩЕ {maxAdd} БИЛЕТОВ</button>
     )
 }
 import TiketsAmount, { TiketsUpdate, TiketsErrorUpdate, TiketsMaxValueUpdate } from '../../store/actions/TiketsAmount';
