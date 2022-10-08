@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import  TiketsLogic  from "./actions/TiketsAmount";
-import  TiketsStateLogic  from "./actions/TiketsAction";
+import TiketsLogic from "./actions/TiketsAmount";
+import TiketsStateLogic from "./actions/TiketsAction";
 import TicketSettingsAction from "./actions/TicketSettingsAction";
+import LogoStateLogic from "./actions/LogoActions";
 const store = configureStore({
   reducer: {
     TiketsAmount: TiketsLogic,
     TiketsState: TiketsStateLogic,
-    TiketsSettings: TicketSettingsAction
+    TiketsSettings: TicketSettingsAction,
+    LogoState: LogoStateLogic,
   },
 });
 

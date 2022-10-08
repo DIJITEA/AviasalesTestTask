@@ -2,6 +2,9 @@ import '../../assets/scss/TiketsBlockScss/tiketsBlock.scss'
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks'
 import { GetTikets } from '../../store/actions/TiketsAction';
+import { GetLogoInf, LogoState } from '../../store/actions/LogoActions';
+import TiketsAmount, { TiketsUpdate, TiketsErrorUpdate, TiketsMaxValueUpdate } from '../../store/actions/TiketsAmount';
+// import logo from '../../assets/imgs/'
 
 type ticketsSlicedType = {
     companyId: string;
@@ -36,9 +39,10 @@ function fromUpdate(store: ticketsSlicedType, city: string, fromTo: string) {
         return inf
 }
 
-function Tiket(Component: { dataId: number }) {
+function Tiket(Component: { dataId: number; logoArr: LogoState }) {
     const dispatch = useAppDispatch()
-
+    // const logoArr = useAppSelector(state => state.LogoState)
+    // console.log(logoArr)
     const status = useAppSelector(state => state.TiketsState.status)
     const tickets = useAppSelector(state => state.TiketsState)
     const inputFromWhere = useAppSelector(state => state.TiketsSettings.fromWhere)
@@ -83,13 +87,31 @@ function Tiket(Component: { dataId: number }) {
         const dateStart = new Date(ticketInfo.info.dateStart)
         const dateEnd = new Date(ticketInfo.info.dateEnd)
         const duration = new Date(ticketInfo.info.duration)
+        let companyName: string
+        let companySrc = '../../src/assets/imgs/'
+        if (Component.logoArr.status == 'succes') {
+            let logoArr: LogoState = Component.logoArr
+            console.log(logoArr.value )
+            for (let i = 0; i < logoArr.value.length; i++) {
+                if (logoArr.value[i].id == ticketInfo.companyId) {
+                    // console.log(i + ' sss ' + logoArr.value[i].name)
+                    companyName = logoArr.value[i].name
+                    companySrc = companySrc + logoArr.value[i].logo.split(' ').join('')
+                    console.log(companySrc)
+                }
+            }
+        }
+        // if ()?
+        // const logoArr = useAppSelector(state => state.LogoState)
+        // const logoInf = GetTiketLogo(ticketInfo.companyId)
+        // console.log(logoInf)
 
         const stopsLength = () => {
             if (ticketInfo.info.stops.length == 0) {
                 return (<div className='tiket-lower-level-cell'>
                     <p className='tiket-lower-level-cell__names'>БЕЗ ПЕРЕСАДОК</p>
                     <h4></h4>
-                    </div>)
+                </div>)
             } else {
                 let transplantsCountString = 'ПЕРЕСАДКИ'
                 if (ticketInfo.info.stops.length === 1) transplantsCountString = 'ПЕРЕСАДКА'
@@ -103,7 +125,11 @@ function Tiket(Component: { dataId: number }) {
         return (<div className='tiket-block'>
             <div className='tiket-upper-level'>
                 <h3 className='tiket-upper-level__price'>{ticketInfo.price} Р</h3>
-                <p className='tiket-upper-level__company'>{ticketInfo.companyId}</p>
+                {/* <p className='tiket-upper-level__company'>{ticketInfo.companyId}</p>
+                <p className='tiket-upper-level__company'>{companyName}</p> */}
+                {/* <div className='tiket-upper-level__company'> */}
+                <img className='tiket-upper-level__company' alt={companyName} src={companySrc}></img>
+                {/* </div> */}
             </div>
             <div className='tiket-lower-level'>
                 <div className='tiket-lower-level-cell'>
@@ -122,11 +148,13 @@ function Tiket(Component: { dataId: number }) {
     }
 }
 
+
 function AddTiketsbutton() {
     const dispatch = useAppDispatch()
     const tiketsmaxAmount = useAppSelector(state => state.TiketsAmount.maxValue)
     const tiketsAmount = useAppSelector(state => state.TiketsAmount.value)
     let maxAdd = 5
+    // console.log(tiketsmaxAmount)
     if (tiketsmaxAmount - tiketsAmount < 5) {
         maxAdd = tiketsmaxAmount - tiketsAmount
     }
@@ -134,7 +162,7 @@ function AddTiketsbutton() {
         <button className='add-tickets-button' onClick={() => dispatch(TiketsUpdate())}>ПОКАЗАТЬ ЕЩЕ {maxAdd} БИЛЕТОВ</button>
     )
 }
-import TiketsAmount, { TiketsUpdate, TiketsErrorUpdate, TiketsMaxValueUpdate } from '../../store/actions/TiketsAmount';
+
 
 
 
@@ -142,12 +170,15 @@ export default function Tikets() {
     const dispatch = useAppDispatch()
     useEffect(() => {
         dispatch(GetTikets())
+        dispatch(GetLogoInf())
     }, [dispatch])
 
     const tiketsAmount = useAppSelector(state => state.TiketsAmount.value)
+    const logoArr: LogoState = useAppSelector(state => state.LogoState)
+    console.log(logoArr)
 
     return (<div>
-        {([...Array(tiketsAmount)].map((e, i: number) => <Tiket key={i} dataId={i} />))}
+        {([...Array(tiketsAmount)].map((e, i: number) => <Tiket key={i} dataId={i} logoArr={logoArr} />))}
         <AddTiketsbutton />
     </div>)
 }

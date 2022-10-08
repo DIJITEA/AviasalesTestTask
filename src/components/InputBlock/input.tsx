@@ -20,17 +20,17 @@ function Input() {
             <input type='text' className='form__input form__input--second' value={toWhere} onChange={(e) => dispatch(toWhereUpdate(e.target.value))} placeholder="Куда"></input>
             {/* <label>
                 Когда */}
-            <input type="text" placeholder='Когда' className='form__input form__input--text'
+            <input type="date" placeholder='Когда' className='form__input form__input--data form__input--data-non-active-forward'
                 onFocus={(e) => {
-                    e.target.type = 'date';
-                    e.target.classList.toggle('form__input--text')
-                    e.target.classList.toggle('form__input--data')
+                    // e.target.type = 'date';
+                    e.target.classList.toggle('form__input--data-active')
+                    e.target.classList.toggle('form__input--data-non-active-forward')
                 }}
                 onBlur={(e) => {
                     if (e.target.value == '') {
-                        e.target.type = 'text'
-                        e.target.classList.toggle('form__input--text')
-                        e.target.classList.toggle('form__input--data')
+                        // e.target.type = 'text'
+                        e.target.classList.toggle('form__input--data-active')
+                        e.target.classList.toggle('form__input--data-non-active-forward')
                     }
                 }}
                 onChange={(e) => dispatch(whenUpdate(e.target.value))}
@@ -38,19 +38,19 @@ function Input() {
             {/* </label> */}
             {/* <label>
                 Обратно */}
-            <input type="date" placeholder='Обратно' className='form__input form__input--right form__input--data'
-                // onFocus={(e) => {
-                //     e.target.type = 'date';
-                //     e.target.classList.toggle('form__input--text')
-                //     e.target.classList.toggle('form__input--data')
-                // }}
-                // onBlur={(e) => {
-                //     if (e.target.value == '') {
-                //         e.target.type = 'text'
-                //         e.target.classList.toggle('form__input--text')
-                //         e.target.classList.toggle('form__input--data')
-                //     }
-                // }}
+            <input type="date" placeholder='Обратно' className='form__input form__input--right form__input--data form__input--data-non-active-back'
+                onFocus={(e) => {
+                    // e.target.type = 'date';
+                    e.target.classList.toggle('form__input--data-active')
+                    e.target.classList.toggle('form__input--data-non-active-back')
+                }}
+                onBlur={(e) => {
+                    if (e.target.value == '') {
+                        // e.target.type = 'text'
+                        e.target.classList.toggle('form__input--data-active')
+                        e.target.classList.toggle('form__input--data-non-active-back')
+                    }
+                }}
                 onChange={(e) => dispatch(whenBackUpdate(new Date(e.target.value)))}></input>
             {/* </label> */}
         </form>

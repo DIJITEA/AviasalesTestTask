@@ -28,7 +28,13 @@ $namesColor: #A0B0B9;
         line-height: 24px;
     }
 
-    &__company {}
+    &__company {
+        // display: flex;
+        // justify-content: center;
+        object-fit: cover;
+        width: 110px;
+        height: 36px;
+    }
 }
 
 .tiket-lower-level {

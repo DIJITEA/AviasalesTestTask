@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { cloneDeep, values } from "lodash";
+// import { cloneDeep, values } from "lodash";
 
 export const GetTikets = createAsyncThunk('actions/GetTikets', async () => {
     return fetch('https://api.npoint.io/163b5e66df9f2741243e').then((res: Response) => res.json())

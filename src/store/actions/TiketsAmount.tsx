@@ -30,9 +30,15 @@ export const TiketsLogic = createSlice({
             if (state.value >= state.maxValue) {
                 state.value = state.maxValue
                 state.valueStatus = 'full'
-            } else{
-                state.value = 6
-                state.valueStatus = 'notFull'
+            } else if (state.value < state.maxValue && state.value < 6){
+                if(state.maxValue < 6){
+                    state.value = state.maxValue
+                    state.valueStatus = 'full'
+                }
+                else{
+                    state.value = 6
+                    state.valueStatus = 'notFull'
+                }
             }
         },
         TiketsErrorUpdate: (state, action: PayloadAction<number>) => {
