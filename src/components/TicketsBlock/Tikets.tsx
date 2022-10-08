@@ -5,6 +5,8 @@ import { GetTikets } from '../../store/actions/TiketsAction';
 import { GetLogoInf, LogoState } from '../../store/actions/LogoActions';
 import TiketsAmount, { TiketsUpdate, TiketsErrorUpdate, TiketsMaxValueUpdate } from '../../store/actions/TiketsAmount';
 // import logo from '../../assets/imgs/'
+const S7 = require('../../assets/imgs/S7Logo.png')
+
 
 type ticketsSlicedType = {
     companyId: string;
@@ -88,7 +90,7 @@ function Tiket(Component: { dataId: number; logoArr: LogoState }) {
         const dateEnd = new Date(ticketInfo.info.dateEnd)
         const duration = new Date(ticketInfo.info.duration)
         let companyName: string
-        let companySrc = '../../src/assets/imgs/'
+        let companySrc 
         if (Component.logoArr.status == 'succes') {
             let logoArr: LogoState = Component.logoArr
             console.log(logoArr.value )
@@ -96,7 +98,8 @@ function Tiket(Component: { dataId: number; logoArr: LogoState }) {
                 if (logoArr.value[i].id == ticketInfo.companyId) {
                     // console.log(i + ' sss ' + logoArr.value[i].name)
                     companyName = logoArr.value[i].name
-                    companySrc = companySrc + logoArr.value[i].logo.split(' ').join('')
+                    //  companySrc = require('../../assets/imgs/S7Logo.png') 
+                     companySrc = require('../../assets/imgs/' + logoArr.value[i].logo.split(' ').join('')) 
                     console.log(companySrc)
                 }
             }
